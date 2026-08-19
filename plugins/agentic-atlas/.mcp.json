@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "agentic-atlas": {
+      "type": "http",
+      "url": "https://agentic-atlas.dev/mcp/"
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "agentic-atlas",
+  "version": "0.4.0",
+  "description": "Consult the published agentic-atlas pattern corpus mid-design, over the hosted MCP endpoint at agentic-atlas.dev/mcp/ — nothing to install, no local corpus needed. One skill routes by question shape: cheap lookups answered inline from the atlas tools, multi-pattern design consultations dispatched to a librarian agent that distills at query time.",
+  "keywords": [
+    "design-patterns",
+    "agentic",
+    "skills",
+    "claude-code"
+  ],
+  "author": {
+    "name": "Avery Jones",
+    "email": "avery.jones.nyc@gmail.com"
+  }
+}
