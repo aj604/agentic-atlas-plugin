@@ -1,6 +1,6 @@
 {
   "name": "agentic-atlas",
-  "description": "Plugin marketplace for agentic-atlas.dev. Ships the agentic-atlas plugin: consult the published pattern corpus while designing skills and agent systems.",
+  "description": "Companion plugin marketplace for Agentic Atlas — field-tested patterns for designing agent systems, readable by people and consultable by agents over MCP at agentic-atlas.dev.",
   "owner": {
     "name": "Avery Jones",
     "email": "avery.jones.nyc@gmail.com"
@@ -9,7 +9,7 @@
     {
       "name": "agentic-atlas",
       "source": "./plugins/agentic-atlas",
-      "description": "Consult the published agentic-atlas pattern corpus mid-design, over the hosted MCP endpoint at agentic-atlas.dev/mcp/ — nothing to install, no local corpus needed. One skill routes by question shape: cheap lookups answered inline from the atlas tools, multi-pattern design consultations dispatched to a librarian agent that distills at query time."
+      "description": "Consult Agentic Atlas mid-design over hosted MCP at agentic-atlas.dev/mcp/. One skill routes short lookups inline and broader design consultations to a librarian agent; no SDK, CLI, local server, or content bundle is installed."
     }
   ]
 }

@@ -1,15 +1,17 @@
-# agentic-atlas-plugin
+# Agentic Atlas — companion plugin for Claude Code
 
-Publish target for the `agentic-atlas` Claude Code plugin: a filtered
-copy pushed from the private publisher repository, never edited here.
-Each commit names the source commit it was published from.
+[Agentic Atlas](https://agentic-atlas.dev/) is a collection of field-tested
+patterns for designing agent systems, readable by people and consultable by
+agents over MCP. This repository distributes its public Claude Code companion
+plugin.
 
     /plugin marketplace add aj604/agentic-atlas-plugin
 
-then install `agentic-atlas`. The plugin consults the published atlas
-over the hosted MCP endpoint at <https://agentic-atlas.dev/mcp/>; the
-copyable consultation discipline is served at
-<https://agentic-atlas.dev/consult.md>.
+Then install `agentic-atlas`. The plugin connects to the hosted, read-only MCP
+endpoint at <https://agentic-atlas.dev/mcp/>. It installs no SDK, CLI, local
+server, or content bundle.
 
-Source, issues, and the drift guards that hold this plugin's prose to
-the frozen Agent grammar live with the publisher: <https://agentic-atlas.dev>.
+Connection instructions are at <https://agentic-atlas.dev/connect>, and the
+copyable consultation contract is at
+<https://agentic-atlas.dev/consult.md>. Report plugin or transport problems in
+this repository's [issue tracker](https://github.com/aj604/agentic-atlas-plugin/issues).
