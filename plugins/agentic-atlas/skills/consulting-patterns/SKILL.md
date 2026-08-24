@@ -1,6 +1,6 @@
 ---
 name: consulting-patterns
-description: Use when designing, reviewing, or restructuring a skill, subagent, agent definition, plugin, or multi-agent workflow — choosing a decomposition, drawing dispatch boundaries, budgeting context, shaping what a subagent carries or returns, placing verification seams, or deciding persistence/config shape — before settling those decisions, not after. Not for executing an existing skill, writing ordinary application code, or tasks that merely mention agents.
+description: Consult Agentic Atlas when designing, reviewing, or restructuring a skill, subagent, agent definition, plugin, or multi-agent workflow — especially while choosing decomposition, dispatch boundaries, context budgets, subagent carry/return shape, verification seams, or persistence/config shape. Use before settling those design decisions; not for executing an existing skill, ordinary application code, or tasks that merely mention agents.
 ---
 
 # Consulting Patterns
@@ -10,13 +10,16 @@ skill only routes into it. Restate nothing from it.
 
 ## The consultation surface (locate, don't call yet)
 
-The plugin registers the hosted transport itself (`.mcp.json` → Streamable
-HTTP at `https://agentic-atlas.dev/mcp/`), so the `atlas_*` tools are
-already in the session — nothing to install, nothing to cache, no corpus on
-this machine. The surface is eight tools over one active Release, and the
-disclosure tiers run `atlas_orient` → `atlas_cards` → `atlas_read` (a named
-Section address) → `atlas_read` (the whole Node id); `atlas_navigate` and
-`atlas_define` answer quick lookups in one call. `atlas_navigate` with
+The Claude Code plugin registers the hosted transport itself (`.mcp.json` →
+Streamable HTTP at `https://agentic-atlas.dev/mcp/`). A standalone skills CLI
+install carries only this skill, so its operator must connect that same hosted
+endpoint first (instructions: `https://agentic-atlas.dev/connect`). In either
+installation, the `atlas_*` tools must already be in the session — nothing to
+cache and no corpus on this machine. The surface is eight tools over one active
+Release, and the disclosure tiers run `atlas_orient` → `atlas_cards` →
+`atlas_read` (a named Section address) → `atlas_read` (the whole Node id);
+`atlas_navigate` and `atlas_define` answer quick lookups in one call.
+`atlas_navigate` with
 `view="tour"` answers "where do I start" with the publisher's own curated
 walk, in one call, before any of the above;
 the rest are the deliberate floor. Statuses are honest at every tier — weight
@@ -90,8 +93,9 @@ the link opens the exact Human Section.
 If the rung is ambiguous, call `atlas_navigate` with `view="tree"` and
 re-decide.
 
-**Degradation rule** — in a harness with no subagent dispatch, the
-dispatch rung does not exist: run the librarian method inline yourself —
+**Degradation rule** — in a harness with no `pattern-librarian` agent (including
+a standalone skills CLI install), the dispatch rung does not exist: run the
+librarian method inline yourself —
 `atlas_orient` (only if you hold no identity yet; match its candidates
 against the task), `atlas_cards` (batch the candidates 1–4 at a time; a
 bad id fails the whole call, so drop it and re-batch rather than retrying
