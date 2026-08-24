@@ -9,7 +9,7 @@
     {
       "name": "agentic-atlas",
       "source": "./plugins/agentic-atlas",
-      "description": "Consult Agentic Atlas mid-design over hosted MCP at agentic-atlas.dev/mcp/. One skill routes short lookups inline and broader design consultations to a librarian agent; no SDK, CLI, local server, or content bundle is installed."
+      "description": "Do design work with Agentic Atlas over hosted MCP at agentic-atlas.dev/mcp/. Three skills — audit an existing agent artifact, design a new agent system, apply one named pattern — over two read-only agents; no SDK, CLI, local server, or content bundle is installed."
     }
   ]
 }

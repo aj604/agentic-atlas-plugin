@@ -5,14 +5,21 @@ patterns for designing agent systems, readable by people and consultable by
 agents over MCP. This repository distributes its public Claude Code companion
 plugin.
 
-## Install only the consultation skill
+## Install individual skills
 
-    npx skills add aj604/agentic-atlas-plugin --skill consulting-patterns
+    npx skills add aj604/agentic-atlas-plugin --skill reviewing-agent-designs
+    npx skills add aj604/agentic-atlas-plugin --skill designing-agent-systems
+    npx skills add aj604/agentic-atlas-plugin --skill applying-a-pattern
 
-This standard skills CLI command explicitly selects `consulting-patterns`.
-It installs that skill alone, not the repository's Claude Code plugin manifest,
-MCP configuration, or `pattern-librarian` agent. Connect the hosted MCP endpoint
-for your client first: <https://agentic-atlas.dev/connect>.
+Each standard skills CLI command explicitly selects one skill —
+`reviewing-agent-designs` audits an existing agent artifact against the
+patterns, `designing-agent-systems` designs a new agent system, and
+`applying-a-pattern` turns one named pattern into a cited edit plan. A
+command installs that skill alone, not the repository's Claude Code plugin
+manifest, MCP configuration, `pattern-librarian` agent, `design-auditor`
+agent, or shared return-shapes contract; the skill then runs its
+consultation method inline. Connect the hosted MCP endpoint for your
+client first: <https://agentic-atlas.dev/connect>.
 
 ## Install the Claude Code companion plugin
 
