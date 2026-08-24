@@ -34,3 +34,9 @@ Not covered here, deliberately:
 - **Seeding a real subagent's return** is not supported by the harness;
   `return-shape-recovery/` seeds the return through the prompt instead,
   which tests the same receiver behavior.
+- **The child-surface fallback** (a dispatch returning
+  `surface-unavailable` while the session's own `atlas_*` tools work →
+  fall through to the inline path, per the contract's rule 1) has the
+  same seeding limitation; exercise it manually by registering the
+  hosted endpoint under a server name the agents' `tools:` glob does not
+  match.

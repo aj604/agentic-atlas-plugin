@@ -2,8 +2,8 @@
 
 This is the one normative statement of every seam between this plugin's
 skills and agents. A skill pastes the relevant shape section (plus the
-Shared forms section) verbatim into each dispatch prompt, and validates the
-return against that shape's receiver checks. An agent conforms to the shape
+Shared forms and Traversal rules sections) verbatim into each dispatch
+prompt, and validates the return against that shape's receiver checks. An agent conforms to the shape
 its dispatch carries. Nothing restates a shape anywhere else — a second
 prose copy is how two seams drift into coincidentally-similar contracts,
 and this document exists so that cannot happen.
@@ -48,6 +48,35 @@ invent its content.
 
 **No prose dumps.** Never quote more than two consecutive sentences from a
 node. The value of a return is distillation against the stated problem.
+This rule has no receiver check — it rides on the producing agent's
+conformance and the presenting skill's judgment, not on mechanical
+validation.
+
+## Traversal rules
+
+The corpus surface's four governing rules, stated once here for every
+skill and agent that traverses it. The hosted counterpart is the "four
+rules" section of https://agentic-atlas.dev/consult.md; in an install
+where this file is absent, that page stands in.
+
+1. **Direct address.** The tools are ordered by cost, not sequence:
+   `atlas_orient` only when no identity is held yet; an id already held
+   goes straight to the lowest sufficient payload.
+2. **Batching is atomic.** `atlas_cards` (and `atlas_provenance`) take
+   1–4 distinct ids and answer whole or not at all — on
+   `batch_not_atomic`, drop the offending id and re-batch; never fall
+   back to one call per id.
+3. **Recovery is declared, not guessed.** Every payload names the fact
+   classes it withheld in `scope.omitted_fact_classes`; the one call
+   that recovers each class is fixed for the whole surface (declared in
+   the tool grammar) and is addressed at the subject in hand, rather
+   than inferred as a next rung.
+4. **Revisions are carried, never crossed.** Every payload names the
+   Release it was read from: carry it back as `expected_revision` on
+   every later call in the same consultation, and pass any cursor back
+   unchanged. A promotion mid-traversal comes back as `revision_changed`
+   with no payload: restart the traversal on the new Release; never
+   stitch two Releases together.
 
 ## ConsultationReturn
 
@@ -105,8 +134,10 @@ Receiver checks:
    `findings` / `clean` / `nothing-bears` / `surface-unavailable`.
 2. If `findings`, every finding bullet begins `- **`, carries a
    `[stable]` or `[fleshed]` tag, and carries the citation form.
-3. Every finding has a `where:` line and a `prescription:` line.
-4. The whole return is ≤100 lines.
+3. If `findings`, no `[stable]`-tagged finding appears after a
+   `[fleshed]`-tagged one.
+4. Every finding has a `where:` line and a `prescription:` line.
+5. The whole return is ≤100 lines.
 
 ## EditPlanReturn
 
@@ -154,17 +185,24 @@ Receiver checks:
    https://agentic-atlas.dev/connect) and stop. A `catalog_unavailable`
    error means the deployment is serving no Release; report that the same
    way.
+
+   **Child-surface failure is not atlas absence.** A dispatched agent
+   that returns `status: surface-unavailable` while the dispatching
+   session itself holds working `atlas_*` tools has failed to bind its
+   own tool scope — typically the MCP server registered under a name the
+   agent's `tools:` glob does not match. The atlas is reachable, so the
+   skill does not stop: it says what happened and falls through to rule
+   2's inline path. The honest stop above applies only when the session
+   itself holds no `atlas_*` tools.
 2. **No subagent support.** The dispatch rung does not exist in this
    harness: read the would-be agent's definition file and run its method
    inline yourself, producing the same shape and validating it the same
    way. The consultation is never optional, and a missing dispatch rung is
    never a reason to skip it.
-3. **Revision change mid-traversal.** Every payload names the Release it
-   was read from; carry it back as `expected_revision` on every later call
-   in the same consultation, and pass any cursor back unchanged. A
-   promotion mid-traversal comes back as `revision_changed` with no
-   payload: restart the traversal on the new Release. Never stitch two
-   Releases together.
+3. **Revision change mid-traversal.** Traversal rule 4 is the one
+   statement of this discipline — it travels pasted into every dispatch
+   beside the return shape, and an inline run reads it above. Nothing
+   here adds to it.
 4. **Malformed return.** Discard it. Re-dispatch exactly once with the
    original prompt plus the failure evidence — which receiver checks
    failed, quoting the offending lines — and a targeted correction. Do not

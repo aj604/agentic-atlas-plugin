@@ -27,16 +27,14 @@ exist on this machine: never grep or read local files looking for one, and
 if the tools are absent, return `status: surface-unavailable` per the
 contract rather than answering from memory.
 
-Address payloads directly — start at the tool that answers the question,
-not at the top of a ladder. `atlas_orient` only when you hold no identity
-yet; `atlas_cards` batched 1–4 distinct ids per call (the call is atomic:
-one bad id fails the whole batch — drop it and re-batch); `atlas_read`
-with a `node#section` address where a claim names one, the bare Node id
-only where a finding or edit turns on it. Every payload declares what it
-withheld and the one call that recovers it — follow that address. Carry
-`expected_revision`; on `revision_changed`, restart per the contract's
-degradation rules. Statuses are honest at every tier — weight `stable`
-above `fleshed`, and treat a roadmap disclosure as unpublished.
+The dispatch pastes the contract's Traversal rules — direct address,
+atomic batching, declared recovery, carried revisions — and they govern
+every call: carry `expected_revision` throughout, and on
+`revision_changed` restart per the contract's degradation rules. Beyond
+them: `atlas_read` with a `node#section` address where a claim names one,
+the bare Node id only where a finding or edit turns on it. Statuses are
+honest at every tier — weight `stable` above `fleshed`, and treat a
+roadmap disclosure as unpublished.
 
 ## Artifact fluency
 

@@ -11,7 +11,9 @@ skill uses — return shapes, status vocabulary, citation form, degradation
 rules — is defined once in the shared contract at
 `${CLAUDE_PLUGIN_ROOT}/contracts/return-shapes.md` (the plugin root, two
 directories above this skill). Read it before dispatching or validating;
-this skill names its rules rather than restating them.
+this skill names its rules rather than restating them. In a standalone
+skills-CLI install that file is absent — the hosted copy at
+https://agentic-atlas.dev/consult.md stands in.
 
 ## Surface check first
 
@@ -21,6 +23,11 @@ the hosted transport itself (`.mcp.json` → Streamable HTTP at
 connect that same endpoint first (`https://agentic-atlas.dev/connect`).
 If the tools are absent, follow contract degradation rule 1: say so and
 stop. Never audit from memory of the corpus.
+
+A dispatch that later returns `surface-unavailable` while these tools are
+present in the session is the child's tool scope failing to bind, not the
+atlas — per the contract's rule 1, say what happened and fall through to
+the rule-2 inline path below instead of stopping.
 
 ## Cheap path — no dispatch
 
@@ -38,8 +45,12 @@ window auditing, not hunting. A skill is its SKILL.md plus bundled
 resources; an agent is its definition file; a plugin is its manifest,
 `.mcp.json`, hooks, and every skill and agent — audited as one
 decomposition, including whether each skill earns its resident description
-slot. If it's ambiguous which artifact the user means, ask; a wrong guess
-audits the wrong thing at full cost.
+slot. A hook configuration is its hook entries plus every script they
+invoke — the scripts are where the behavior lives, and an audit of the
+entries alone misses it. A workflow is its orchestrating skill, prompt,
+or script plus every agent definition it dispatches. If it's ambiguous
+which artifact the user means, ask; a wrong guess audits the wrong thing
+at full cost.
 
 ## One consolidated dispatch
 
@@ -48,22 +59,23 @@ it needs — it cannot ask back. The user's stated concerns travel
 **verbatim**: a paraphrase loses the constraint they actually care about,
 and the concerns focus the audit without blinkering it.
 
-    Mode: audit. Artifact: <kind — skill / agent / plugin / workflow>.
+    Mode: audit. Artifact: <kind — skill / agent / plugin / hooks / workflow>.
     Files: <every path located above>.
     The user's stated concerns, verbatim: <quote, or "none stated">.
     Contract: <path to ${CLAUDE_PLUGIN_ROOT}/contracts/return-shapes.md>.
 
     Return shape — conform exactly:
-    <paste the contract's "Shared forms" section and its "AuditReturn"
-    section, verbatim>
+    <paste the contract's "Shared forms", "Traversal rules", and
+    "AuditReturn" sections, verbatim>
 
 If the harness has no subagent support, contract degradation rule 2: read
 `${CLAUDE_PLUGIN_ROOT}/agents/design-auditor.md` and run its audit-mode
 method inline yourself, producing and validating the same shape. In a
-standalone skills-CLI install that file is absent too — read the artifact
-files yourself, then run the traversal from the payloads: `atlas_orient`
-only when you hold no identity yet, `atlas_cards` batched 1–4 distinct
-ids (atomic — drop a refused id and re-batch), `atlas_read` on the
+standalone skills-CLI install that file and the contract are absent too —
+read https://agentic-atlas.dev/consult.md, then read the artifact files
+yourself and run its consultation method under its four governing rules
+(the contract's Traversal rules): `atlas_orient` only when you hold no
+identity yet, `atlas_cards` on the ids you hold, `atlas_read` on the
 `node#section` address a claim names, carrying `expected_revision`
 throughout. The consultation is never optional.
 

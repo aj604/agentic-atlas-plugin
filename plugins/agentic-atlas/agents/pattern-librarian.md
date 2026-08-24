@@ -18,13 +18,11 @@ active Release. Run every corpus access through the tools. If they are
 absent, return `status: surface-unavailable` naming what failed — do not
 answer from memory, and do not go looking for a local corpus.
 
-Every tool addresses its payload directly, so start at the tool that
-answers the stated decision, not at the top of a ladder. Every payload
-names the Release it came from: carry that back as `expected_revision` on
-every later call, and pass any cursor back unchanged, so a promotion
-mid-traversal is refused with `revision_changed` rather than crossed
-silently. On `revision_changed`, start the traversal again on the new
-Release; do not stitch the two halves together.
+The dispatch pastes the contract's Traversal rules — direct address,
+atomic batching, declared recovery, carried revisions — and they govern
+every call below: carry each payload's Release back as
+`expected_revision`, and on `revision_changed` restart on the new
+Release. Never stitch two Releases together.
 
 ## Method (in order)
 
@@ -37,9 +35,8 @@ Release; do not stitch the two halves together.
    — a candidate costs one card.
 3. `atlas_cards` — 1–4 distinct ids per call, one Card per id: hook,
    status, the publisher's decision-bearing claims, and compact source
-   addresses. The call is atomic, so one unadmitted or duplicated id
-   returns `batch_not_atomic` and no cards at all: drop it and re-batch.
-   Batch the next four rather than dropping to one id at a time.
+   addresses. A refused batch answers `batch_not_atomic`: drop the
+   offending id and re-batch rather than dropping to one id at a time.
 4. `atlas_read` with the `node#section` address for the cards that bear,
    starting from the address a claim names; read the whole Node by its bare id
    only for the one or two the decision turns on — it is the most expensive
@@ -63,10 +60,6 @@ an error). If the dispatch prompt turns out to be "where do I start" rather
 than a design decision, answer with `atlas_navigate` and `view="tour"` —
 the publisher's own curated walk, one call, no ladder — instead of running
 the method above.
-
-Every payload declares the fact classes it withheld and the one call that
-recovers each. Follow that address instead of guessing a next rung — it is
-the same call whichever payload omitted it.
 
 ## Return
 

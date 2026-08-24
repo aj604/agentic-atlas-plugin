@@ -11,7 +11,9 @@ skill uses — return shapes, status vocabulary, citation form, degradation
 rules — is defined once in the shared contract at
 `${CLAUDE_PLUGIN_ROOT}/contracts/return-shapes.md` (the plugin root, two
 directories above this skill). Read it before dispatching or validating;
-this skill names its rules rather than restating them.
+this skill names its rules rather than restating them. In a standalone
+skills-CLI install that file is absent — the hosted copy at
+https://agentic-atlas.dev/consult.md stands in.
 
 ## Surface check first
 
@@ -21,6 +23,11 @@ the hosted transport itself (`.mcp.json` → Streamable HTTP at
 connect that same endpoint first (`https://agentic-atlas.dev/connect`).
 If the tools are absent, follow contract degradation rule 1: say so and
 stop. Never plan edits from memory of the corpus.
+
+A dispatch that later returns `surface-unavailable` while these tools are
+present in the session is the child's tool scope failing to bind, not the
+atlas — per the contract's rule 1, say what happened and fall through to
+the rule-2 inline path below instead of stopping.
 
 ## Verify the pattern inline, before anything else
 
@@ -50,17 +57,19 @@ dispatch the `design-auditor` agent once, in apply mode:
     Contract: <path to ${CLAUDE_PLUGIN_ROOT}/contracts/return-shapes.md>.
 
     Return shape — conform exactly:
-    <paste the contract's "Shared forms" section and its "EditPlanReturn"
-    section, verbatim>
+    <paste the contract's "Shared forms", "Traversal rules", and
+    "EditPlanReturn" sections, verbatim>
 
 If the harness has no subagent support, contract degradation rule 2: read
 `${CLAUDE_PLUGIN_ROOT}/agents/design-auditor.md` and run its apply-mode
 method inline yourself, producing and validating the same shape. In a
-standalone skills-CLI install that file is absent too — read the pattern's
-own sections (`atlas_read` on each `node#section` address the verified
-card's claims name, carrying `expected_revision`), read the artifact
-files, and derive the plan the same way. The consultation is never
-optional, and every edit still cites as
+standalone skills-CLI install that file and the contract are absent too —
+read https://agentic-atlas.dev/consult.md, then read the pattern's own
+sections (`atlas_read` on each `node#section` address the verified card's
+claims name, carrying `expected_revision`) and the artifact files, and
+derive the plan the same way
+under its four governing rules (the contract's Traversal rules). The
+consultation is never optional, and every edit still cites as
 `[<id> § <section>](https://agentic-atlas.dev/nodes/<id>#<section>)`,
 the contract's citation form.
 

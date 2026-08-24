@@ -11,7 +11,9 @@ skill uses — return shapes, status vocabulary, citation form, degradation
 rules — is defined once in the shared contract at
 `${CLAUDE_PLUGIN_ROOT}/contracts/return-shapes.md` (the plugin root, two
 directories above this skill). Read it before dispatching or validating;
-this skill names its rules rather than restating them.
+this skill names its rules rather than restating them. In a standalone
+skills-CLI install that file is absent — the hosted copy at
+https://agentic-atlas.dev/consult.md stands in.
 
 ## Surface check first
 
@@ -22,11 +24,18 @@ connect that same endpoint first (`https://agentic-atlas.dev/connect`).
 If the tools are absent, follow contract degradation rule 1: say so and
 stop. Never answer from memory of the corpus.
 
+A dispatch that later returns `surface-unavailable` while these tools are
+present in the session is the child's tool scope failing to bind, not the
+atlas — per the contract's rule 1, say what happened and fall through to
+the rule-2 inline path below instead of stopping.
+
 ## Cheap path — no dispatch
 
 One term ("what does the atlas mean by momentum") → `atlas_define`. One
 pattern's gist → `atlas_cards` on its id (batch 1–4 ids for an explicit
-comparison). "Where do I start" → `atlas_navigate` with `view="tour"`,
+comparison). "Does the atlas have anything about X" with no id in hand →
+`atlas_orient`, one call, then cards on whichever candidates the user
+wants opened. "Where do I start" → `atlas_navigate` with `view="tour"`,
 the publisher's curated walk, one call. Answer directly from the payload,
 cite as `[<id> § <section>](https://agentic-atlas.dev/nodes/<id>#<section>)`
 — the contract's citation form: the visible address works with
@@ -55,7 +64,17 @@ consolidate the entire problem into one fresh dispatch of the
 `pattern-librarian` agent each time. There is no stateful consultation
 session: when the design shifts materially after a proposal, compose a
 fresh consolidated dispatch from scratch — the whole updated problem, not
-a delta on the last one.
+a delta on the last one. A fresh dispatch may also land on a newer
+Release than the last one did; the new proposal re-cites everything from
+the new consultation rather than reusing the old proposal's citations, so
+two Releases are never stitched into one recommendation.
+
+The librarian holds only the `atlas_*` tools — no file access, by
+charter. Everything it needs travels *as prose* in the dispatch: a file
+path in "Current shape" is a dead reference it cannot follow, so describe
+what exists rather than pointing at it. This is also why, unlike the
+auditor dispatches, no contract path travels here — the shape sections
+are pasted in full instead.
 
 Dispatch prompt:
 
@@ -64,19 +83,19 @@ Dispatch prompt:
     specific structural choices this consultation must inform>.
 
     Return shape — conform exactly:
-    <paste the contract's "Shared forms" section and its
-    "ConsultationReturn" section, verbatim>
+    <paste the contract's "Shared forms", "Traversal rules", and
+    "ConsultationReturn" sections, verbatim>
 
 If the harness has no subagent support, contract degradation rule 2: read
 `${CLAUDE_PLUGIN_ROOT}/agents/pattern-librarian.md` and run its method
 inline yourself, producing and validating the same shape. In a standalone
-skills-CLI install that file is absent too — run the traversal from the
-payloads themselves: `atlas_orient` only when you hold no identity yet,
-`atlas_cards` batched 1–4 distinct ids (the call is atomic — drop a
-refused id and re-batch), `atlas_read` on the `node#section` address a
-claim names, carrying `expected_revision` throughout; every payload
-declares what it withheld and the one call that recovers it. The
-consultation is never optional.
+skills-CLI install that file and the contract are absent too — read
+https://agentic-atlas.dev/consult.md and run its consultation method
+under its four governing rules (the contract's Traversal rules):
+`atlas_orient` only when you hold no identity yet, `atlas_cards` on the
+ids you hold, `atlas_read` on the `node#section` address a claim names,
+carrying `expected_revision` throughout. The consultation is never
+optional.
 
 ## Validate, then propose
 
@@ -84,10 +103,24 @@ Run the ConsultationReturn receiver checks from the contract. On a
 violation, degradation rule 4: exactly one corrective re-dispatch carrying
 the failure evidence; a second violation is surfaced to the user verbatim.
 
-From a valid consultation, propose the decomposition and present it for
+A `nothing-bears` return is a valid result, not a failure: present it
+honestly — the nearest nodes and why they fall short — before proposing
+anything. A proposal can still follow, but it rests on general design
+judgment rather than the atlas, and it says so plainly instead of
+carrying citations it does not have. Inventing a citation to dress up an
+uncited choice is the defect that status exists to prevent.
+
+From a `consulted` return, propose the decomposition and present it for
 approval before scaffolding anything: skill and agent count, each trigger
 contract, dispatch boundaries, what each child carries in and returns,
 verification seams. Every structural choice carries its own citation in
 the contract's form, so the user can challenge any single choice by
 reading its source — and statuses travel honestly, so a choice resting on
 `fleshed` guidance says so. Nothing is created until the user approves.
+
+On approval, build the artifacts yourself, in the main context, through
+the normal development workflow and approval flow — the librarian never
+touches files — keeping each citation attached to the choice it grounds
+as you scaffold. Follow-ups route to the siblings: "apply <pattern>" to
+what now exists belongs to applying-a-pattern, and auditing the built
+system against the full corpus belongs to reviewing-agent-designs.

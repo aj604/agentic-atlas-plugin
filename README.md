@@ -33,3 +33,6 @@ Connection instructions are at <https://agentic-atlas.dev/connect>, and the
 copyable consultation contract is at
 <https://agentic-atlas.dev/consult.md>. Report plugin or transport problems in
 this repository's [issue tracker](https://github.com/aj604/agentic-atlas-plugin/issues).
+
+Working on the plugin with an AI coding agent? Start with
+[AGENTS.md](AGENTS.md).

@@ -17,12 +17,19 @@ consultation can refuse to cross a promotion silently.
 
 ## Layout
 
-- `.claude-plugin/plugin.json` — plugin manifest.
-- `.mcp.json` — registers the hosted public consultation endpoint.
+- `plugin.json` — the portable manifest, conforming to
+  [Agent Plugins 1.0.0](https://agent-plugins.org/specification).
+- `mcp.json` — the portable MCP configuration: one `streamable-http`
+  server at the hosted endpoint.
+- `.claude-plugin/plugin.json` — Claude Code's manifest, stating the same
+  identity in its own dialect.
+- `.mcp.json` — Claude Code's MCP configuration, registering the same
+  hosted public consultation endpoint (which it spells `http`).
 - `contracts/return-shapes.md` — the one normative statement of every
   skill↔agent seam: the three return shapes, the shared status vocabulary,
-  the citation form, and the uniform degradation rules. Skills paste the
-  relevant shape into each dispatch and validate returns against its
+  the citation form, the corpus traversal rules, and the uniform
+  degradation rules. Skills paste the relevant shape and the traversal
+  rules into each dispatch and validate returns against the shape's
   receiver checks; nothing restates a shape anywhere else.
 - `skills/reviewing-agent-designs/` — audit an existing skill, agent,
   plugin, or workflow against the patterns; cited, checkable findings.

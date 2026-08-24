@@ -1,0 +1,27 @@
+{
+  "$schema": "https://skills.sh/schemas/skills.sh.schema.json",
+  "notGrouped": "bottom",
+  "groupings": [
+    {
+      "title": "Audit",
+      "description": "Judge an agent artifact you already have against the published patterns.",
+      "skills": [
+        "reviewing-agent-designs"
+      ]
+    },
+    {
+      "title": "Design",
+      "description": "Shape an agent system that does not exist yet, with every structural choice cited.",
+      "skills": [
+        "designing-agent-systems"
+      ]
+    },
+    {
+      "title": "Apply",
+      "description": "Turn one named pattern into a cited edit plan for one existing artifact.",
+      "skills": [
+        "applying-a-pattern"
+      ]
+    }
+  ]
+}
