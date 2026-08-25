@@ -1,6 +1,6 @@
 ---
 name: applying-a-pattern
-description: Turn one named Agentic Atlas pattern into concrete, cited edits to one existing artifact. Use whenever the user names a specific atlas pattern — by id, by title, or by pointing at a page on agentic-atlas.dev — and wants it applied, adopted, retrofitted, or implemented in their skill, agent definition, plugin, or workflow: "apply <pattern> to my skill", "make my plugin follow <pattern>", "I read <pattern> on the atlas, retrofit it here". Not for a full audit against all the patterns (that is reviewing-agent-designs), not for open-ended design (designing-agent-systems), and not for refactors that don't trace to an atlas pattern — those stay with the normal development workflow.
+description: 'Turn one named Agentic Atlas pattern into concrete, cited edits to one existing artifact. Use whenever the user names a specific atlas pattern — by id, by title, or by pointing at a page on agentic-atlas.dev — and wants it applied, adopted, retrofitted, or implemented in their skill, agent definition, plugin, or workflow: "apply a pattern to my skill", "make my plugin follow this pattern", "I read this pattern on the atlas, retrofit it here". Not for a full audit against all the patterns (that is reviewing-agent-designs), not for open-ended design (designing-agent-systems), and not for refactors that don''t trace to an atlas pattern — those stay with the normal development workflow.'
 ---
 
 # Applying a Pattern
