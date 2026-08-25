@@ -8,7 +8,7 @@
   "plugins": [
     {
       "name": "agentic-atlas",
-      "source": "./plugins/agentic-atlas",
+      "source": "./",
       "description": "Do design work with Agentic Atlas over hosted MCP at agentic-atlas.dev/mcp/. Three skills — audit an existing agent artifact, design a new agent system, apply one named pattern — over two read-only agents; no SDK, CLI, local server, or content bundle is installed."
     }
   ]

@@ -10,7 +10,7 @@ Run from this plugin's directory (the harness is early-access; a plain
 is enabled):
 
 ```bash
-claude plugin eval . --allow-tools Skill --allow-tools Read --allow-tools Glob --allow-tools Grep
+claude plugin eval . --allow-tools Skill --allow-tools Read --allow-tools Glob --allow-tools Grep --allow-tools 'mcp__plugin_agentic-atlas_agentic-atlas__*'
 ```
 
 Coverage:
@@ -24,19 +24,19 @@ Coverage:
 - `return-shape-recovery/` — a seeded malformed AuditReturn is discarded
   and recovered per the contract (one corrective re-dispatch carrying the
   failure evidence), never woven into advice.
+- `surface-unavailable-stop/` — a parent session with no Atlas tools stops
+  honestly before dispatch and never substitutes guidance from memory.
+- `child-surface-inline-fallback/` — a seeded child-only tool-binding failure
+  is disclosed and falls through to the working parent's inline audit method,
+  making at least one parent Atlas call without retrying the broken child.
 
 Not covered here, deliberately:
 
-- **Degradation honesty for an absent surface** (no `atlas_*` tools →
-  honest stop) needs the hosted MCP endpoint to be unreachable, and the
-  eval sandbox does not block network. Exercise it manually by running a
-  case with the plugin's `.mcp.json` endpoint unreachable.
 - **Seeding a real subagent's return** is not supported by the harness;
-  `return-shape-recovery/` seeds the return through the prompt instead,
-  which tests the same receiver behavior.
-- **The child-surface fallback** (a dispatch returning
-  `surface-unavailable` while the session's own `atlas_*` tools work →
-  fall through to the inline path, per the contract's rule 1) has the
-  same seeding limitation; exercise it manually by registering the
-  hosted endpoint under a server name the agents' `tools:` glob does not
-  match.
+  `return-shape-recovery/` and `child-surface-inline-fallback/` seed the
+  returned boundary through the prompt, then judge the same receiver
+  behavior. The child-fallback case uses the real hosted parent surface.
+- **Transport outage mechanics** are not simulated: the absent-surface case
+  starts after failed MCP registration and judges the skill's public response.
+  Transport connection and addressing are exercised by the publisher's MCP
+  integration suite.
