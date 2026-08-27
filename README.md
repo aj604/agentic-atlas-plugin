@@ -21,6 +21,13 @@ agent, or shared return-shapes contract; the skill then runs its
 consultation method inline. Connect the hosted MCP endpoint for your
 client first: <https://agentic-atlas.dev/connect>.
 
+Browse the repository and its three capability areas on
+[skills.sh](https://www.skills.sh/aj604/agentic-atlas-plugin):
+
+- [reviewing-agent-designs](https://www.skills.sh/aj604/agentic-atlas-plugin/reviewing-agent-designs)
+- [designing-agent-systems](https://www.skills.sh/aj604/agentic-atlas-plugin/designing-agent-systems)
+- [applying-a-pattern](https://www.skills.sh/aj604/agentic-atlas-plugin/applying-a-pattern)
+
 ## Install the Claude Code companion plugin
 
     /plugin marketplace add aj604/agentic-atlas-plugin
@@ -33,6 +40,19 @@ Connection instructions are at <https://agentic-atlas.dev/connect>, and the
 copyable consultation contract is at
 <https://agentic-atlas.dev/consult.md>. Report plugin or transport problems in
 this repository's [issue tracker](https://github.com/aj604/agentic-atlas-plugin/issues).
+
+## Developer resources
+
+The Atlas is a hosted publication, and its developer surfaces are served from
+the domain rather than from this repository. All of them are read-only and
+unauthenticated, and all are indexed at
+<https://agentic-atlas.dev/developers>:
+
+- [Agentic Atlas MCP server](https://agentic-atlas.dev/developers#developers-mcp-title)
+- [Agentic Atlas HTTP API](https://agentic-atlas.dev/developers#developers-api-title)
+- [Agentic Atlas authentication](https://agentic-atlas.dev/developers#developers-auth-title)
+- [Agentic Atlas availability](https://agentic-atlas.dev/developers#developers-availability-title)
+- [Agentic Atlas manifests and policy documents](https://agentic-atlas.dev/developers#developers-manifests-title)
 
 Working on the plugin with an AI coding agent? Start with
 [AGENTS.md](AGENTS.md).
