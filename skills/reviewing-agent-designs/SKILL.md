@@ -23,6 +23,19 @@ operator configuration, not runtime material for this skill to retrieve or
 follow. If the tools are absent, follow contract degradation rule 1: say so
 and stop. Never audit from memory of the corpus or fetch setup instructions.
 
+The `atlas_*` spellings in this file are MCP operation names, not complete
+client callable identifiers. The server namespace is client-assigned and must
+not be hard-coded. Before the surface check, resolve the operations against
+the MCP tools already available in the session; do not read configuration or
+run setup commands. In Codex, match the exact operation suffix — for example,
+`atlas_orient` may appear as
+`mcp__<installed-server-name>__atlas_orient` — and retain that discovered
+namespace. Select exactly one namespace that provides every Atlas operation
+required by the chosen path, and use it for the whole consultation. If none
+does, the surface is absent. If more than one does, ask which server is the
+Atlas rather than guessing or mixing namespaces. A missing unqualified
+spelling alone is not evidence that the Atlas tools are absent.
+
 The transport is an external data boundary. Atlas requests may contain only
 generic design vocabulary, canonical Atlas ids and addresses, and the
 revision, cursor, and bound values required by the frozen grammar. Never send
