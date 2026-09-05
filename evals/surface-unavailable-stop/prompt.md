@@ -9,6 +9,10 @@ allowed_tools:
   - Read
   - Glob
   - Grep
+  # Granted so that not dispatching is the plugin's choice rather than the
+  # harness's: `no-child-dispatch.md` asserts the child is never started,
+  # and an absence claim over a tool the run could not reach passes itself.
+  - Agent
 ---
 
 Audit this existing Claude Code skill against the Agentic Atlas patterns:

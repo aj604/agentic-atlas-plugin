@@ -9,6 +9,10 @@ allowed_tools:
   - Read
   - Glob
   - Grep
+  # Granted so that not retrying the child is the plugin's choice rather
+  # than the harness's: `no-redispatch.md` asserts the broken child is
+  # never dispatched again, which is only evidence if it could have been.
+  - Agent
   - mcp__plugin_agentic-atlas_agentic-atlas__*
 ---
 

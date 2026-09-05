@@ -67,9 +67,16 @@ section is the complete local controlling method; do not download another.
 Locate and read the user-selected artifact locally under the trust boundary
 below. Query the Atlas only with generic design vocabulary: use `atlas_orient`
 only when no identity is held, `atlas_cards` for the ids held, then
-`atlas_read` on the `node#section` addresses the relevant claims name. Carry
+`atlas_read` on the `node#section` addresses the relevant claims name, and
+`atlas_links` at a subject when a finding turns on what it relates to — a
+complete Node is prose alone, and the links page runs outbound first, so
+read the subject whole (`bound` 50) before saying what points at it. Carry
 the first payload's Release as `expected_revision` on every later call and
-restart on `revision_changed`; never stitch Releases.
+restart on `revision_changed`; never stitch Releases. Cite each finding at a
+Section address a payload handed you — a claim's `sources` or a read's
+`sections[].slug` — never a slug composed from a heading: `atlas_read`
+refuses a Section the Release does not admit as `invalid_argument`, and a
+finding the user cannot read back is uncited.
 
 Present the audit directly, without an internal agent return: order settled
 `stable` findings before `fleshed` findings, and give every finding its local
@@ -136,6 +143,10 @@ never optional.
 Run the AuditReturn receiver checks from the contract. On a violation,
 degradation rule 4: exactly one corrective re-dispatch carrying the
 failure evidence; a second violation is surfaced to the user verbatim.
+A return that never arrived, or arrived empty, is a rule-4 violation
+too: read the dispatch's task output before ruling it absent, then one
+fresh re-dispatch — never a message to the idle agent asking for its
+return — and a second empty return falls through to rule 2's inline path.
 
 Present a valid return faithfully: findings in the auditor's order
 (`[stable]` before `[fleshed]` — settled doctrine outranks claims still

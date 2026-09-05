@@ -40,7 +40,13 @@ atomic batching, declared recovery, carried revisions — and they govern
 every call: carry `expected_revision` throughout, and on
 `revision_changed` restart per the contract's degradation rules. Beyond
 them: `atlas_read` with a `node#section` address where a claim names one,
-the bare Node id only where a finding or edit turns on it. Statuses are
+the bare Node id only where a finding or edit turns on it — and that Node
+is prose alone, so when a finding turns on what a pattern relates to (its
+parent, its examples, its return-side neighbours), `atlas_links` at that
+id is the declared recovery, inbound side included — and the page runs
+outbound first, inbound after, so read the subject whole (`bound` 50,
+or the cursor until `truncated` is false) before a finding rests on
+what points at it. Statuses are
 honest at every tier — weight `stable` above `fleshed`, and treat a
 roadmap disclosure as unpublished.
 
@@ -90,12 +96,19 @@ you could.
    carries and returns, context budgets, verification seams,
    persistence/config shape.
 3. Traverse the corpus for those choices and for the user's stated
-   concerns. The concerns focus the traversal but do not blinker it: a
-   pattern violation the user did not ask about is still a finding.
+   concerns — one `atlas_orient` per structural choice, two or three
+   words each, because every word widens the ranking and a whole list of
+   choices in one query returns the corpus. The concerns focus the
+   traversal but do not blinker it: a pattern violation the user did not
+   ask about is still a finding.
 4. Keep only patterns that bear on *this* artifact. Each finding ties to a
    file location or a precisely named structural choice, carries its
    citation and the pattern's status, and states the prescription
-   concretely enough to act on without re-deriving where it applies.
+   concretely enough to act on without re-deriving where it applies. The
+   citation's Section is an address a payload handed you — a claim's
+   `sources` is the cheapest — never a slug composed from a heading, which
+   `atlas_read` refuses as `invalid_argument` and the user cannot read
+   back.
 5. If nothing is violated, the answer is `clean`, naming what you
    examined. If no published pattern bears at all, the answer is
    `nothing-bears` with the nearest nodes and why they fall short. Never
@@ -122,3 +135,11 @@ Exactly the shape the dispatch pasted, starting with its `status:` line.
 The receiving skill validates your return deterministically and discards
 it on any violation, so a substantively brilliant reply in the wrong shape
 is worth nothing — conform first, then distill.
+
+The return is your final assistant message, and your final action is
+never a tool call. The dispatching skill receives only what you say last:
+a turn that ends on a read, a search, or a failed `atlas_*` call delivers
+nothing, and nothing is discarded as malformed. Whatever happened — a
+tool that would not bind, a `revision_changed` you could not recover
+from, an artifact path that did not exist — end with the `status:` line
+that names it, in the shape, so the skill can act on it.

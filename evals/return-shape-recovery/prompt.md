@@ -9,13 +9,23 @@ allowed_tools:
   - Read
   - Glob
   - Grep
+  # The case begins after a dispatch, so the surface check has already
+  # passed. Without the surface the contract's answer is rule 1 — say so
+  # and stop — and the recovery these graders judge could never run.
+  - mcp__plugin_agentic-atlas_agentic-atlas__*
+  # Granted for the same reason, one rung up: rule 4's recovery *is* a
+  # dispatch. Withheld, the run can only reach rule 2's inline path, and
+  # the corrective re-dispatch could be described but never taken — which
+  # is all a grader reading the message could ever have observed.
+  - Agent
 ---
 
 You are mid-way through the reviewing-agent-designs flow from the
 agentic-atlas plugin: read that skill and its shared return-shapes
-contract now if you have not already. You dispatched the design-auditor
-in audit mode over my skill at `./my-skill/SKILL.md`, and this is the
-complete reply that just came back from the agent:
+contract now if you have not already. The parent session's `atlas_*`
+tools are working. You dispatched the design-auditor in audit mode over
+my skill at `./my-skill/SKILL.md`, and this is the complete reply that
+just came back from the agent:
 
 ```
 Thanks for the interesting artifact! Here's my take.
