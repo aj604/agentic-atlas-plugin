@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "agentic-atlas",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Do design work with Agentic Atlas over hosted MCP at agentic-atlas.dev/mcp/. Three skills — audit an existing agent artifact, design a new agent system, apply one named pattern — over two read-only agents; no SDK, CLI, local server, or content bundle is installed.",
   "author": {
     "name": "Avery Jones",

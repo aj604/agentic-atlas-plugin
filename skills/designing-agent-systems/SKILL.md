@@ -36,14 +36,40 @@ does, the surface is absent. If more than one does, ask which server is the
 Atlas rather than guessing or mixing namespaces. A missing unqualified
 spelling alone is not evidence that the Atlas tools are absent.
 
-A dispatch that later returns `surface-unavailable` while these tools are
-present in the session is the child's tool scope failing to bind, not the
-atlas — per the contract's rule 1, say what happened and fall through to
-the rule-2 inline path below instead of stopping.
+The complete target grammar is five operations: `atlas_orient` discovers,
+`atlas_cards` batches Cards and optionally expands their audit facts,
+`atlas_read` reads one returned address, `atlas_links` pages one Node's
+relationships, and `atlas_navigate` walks the Release. Do not infer aliases.
+
+A dispatch that fails while these tools are present in the session is the
+child's tool scope failing to bind, not the atlas — the server is mounted
+under a name the agent's `tools:` glob does not match. It arrives in one
+of two forms: the child returns `surface-unavailable`, or the harness
+refuses the dispatch outright because the agent would be spawned with
+zero tools (the `pattern-librarian` holds nothing but the atlas glob, so
+this is the form it gets). Per the contract's rule 1, either way say what
+happened and fall through to the rule-2 inline path below instead of
+stopping; a refused dispatch is not an absent return, so do not
+re-dispatch it.
+
+That failure is visible before the dispatch, and a dispatch that cannot
+bind is not made. A child binds only the tools this session holds, under
+the names this session gives them, and the `pattern-librarian`'s `tools:`
+line — read it from `${CLAUDE_PLUGIN_ROOT}/agents/pattern-librarian.md` —
+names the one namespace it can bind. Compare it with the namespace you
+resolved above: if the resolved namespace is not the one that line names,
+the dispatch would be refused, so do not make it — say which mount the
+glob cannot match and take the rule-2 inline path now, exactly as you
+would after the failure, without reading configuration or running setup
+commands to confirm what the comparison already told you. If they agree,
+dispatch as below.
 
 ## Cheap path — no dispatch
 
-One term ("what does the atlas mean by momentum") → `atlas_define`. One
+One term ("what does the atlas mean by momentum") → `atlas_orient` with
+`kind="term"`; an exact candidate's Hook is its full definition, and
+`atlas_read(address="term:<key>", expected_revision=<coherence>)` is optional
+at the returned address. One
 pattern's gist → `atlas_cards` on its id (batch 1–4 ids for an explicit
 comparison); a `batch_not_atomic` naming that one id under `rejected` means
 the Release does not admit it — say so and `atlas_orient` on its title
@@ -65,16 +91,28 @@ as skill input — and done. A trivial
 lookup never pays child-boot cost. Everything below is for an actual
 design problem.
 
+When publication history bears, list Decisions with
+`atlas_orient(query="", kind="decision", expected_revision=<coherence>)`, then
+pass the returned `decision:<id>` address unchanged to `atlas_read` with that
+same `expected_revision`. When a Card's audit facts bear, call
+`atlas_cards(ids=[<node-id>], provenance=true, expected_revision=<coherence>)` for the
+relevant Node rather than dispatching a separate provenance operation.
+
 ## Standalone inline mode
 
 When the local contract or `pattern-librarian` definition is absent, stay in
 the main context and skip every dispatch and receiver-check step below. This
 section is the complete local controlling method; do not download another.
 Run the interview and proposal stages in this file yourself. Traverse with
-generic design vocabulary only: `atlas_orient` when no identity is held,
-`atlas_cards` for the ids held, `atlas_read` on the `node#section`
-addresses of claims that bear, and `atlas_links` at a subject when a
-recommendation turns on what it relates to — a complete Node is prose
+generic design vocabulary only: `atlas_orient` when no identity is held —
+phrased in stems (`dispatch`, not `dispatched`), since a word of four or
+more letters matches every longer token it begins and a longer form
+matches only itself, and with a word no identity field carries oriented
+alone, since one word that names a subject silences every word beside it
+that names none — `atlas_cards` for the ids held, `atlas_read` on the
+`node#section` addresses of claims that bear, and `atlas_links` at a
+subject when a recommendation turns on what it relates to — a complete
+Node is prose
 alone, and the links page runs outbound first, so read the subject whole
 (`bound` 50) before saying what points at it. Carry the first payload's
 Release as
@@ -87,8 +125,9 @@ heading: `atlas_read` refuses a Section the Release does not admit as
 uncited.
 
 Distill only patterns that bear on the stated decision, with a citation on
-every structural recommendation and an explicit tensions section when
-patterns pull differently. If nothing bears, name the nearest patterns and
+every structural recommendation and, when patterns pull differently, a
+tensions section of one bullet per tension, each citing the Section whose
+tradeoff governs the choice. If nothing bears, name the nearest patterns and
 why they fall short before using uncited general judgment. Present the design
 for approval before creating files.
 
@@ -154,10 +193,12 @@ never optional.
 Run the ConsultationReturn receiver checks from the contract. On a
 violation, degradation rule 4: exactly one corrective re-dispatch carrying
 the failure evidence; a second violation is surfaced to the user verbatim.
-A return that never arrived, or arrived empty, is a rule-4 violation
-too: read the dispatch's task output before ruling it absent, then one
-fresh re-dispatch — never a message to the idle agent asking for its
-return — and a second empty return falls through to rule 2's inline path.
+A return that never arrived, or arrived empty, from a dispatch that ran is
+a rule-4 violation too — a dispatch the harness refused to start is not,
+and is never re-dispatched: read the dispatch's task output before ruling
+a return absent, then one fresh re-dispatch — never a message to the idle
+agent asking for its return — and a second empty return falls through to
+rule 2's inline path.
 
 A `nothing-bears` return is a valid result, not a failure: present it
 honestly — the nearest nodes and why they fall short — before proposing

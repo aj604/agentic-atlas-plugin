@@ -50,6 +50,19 @@ Not covered here, deliberately:
   `return-shape-recovery/` and `child-surface-inline-fallback/` seed the
   returned boundary through the prompt, then judge the same receiver
   behavior. The child-fallback case uses the real hosted parent surface.
+- **The refused-dispatch form of a child-surface failure** — the harness
+  declining to start the `pattern-librarian` at all, because its atlas-only
+  `tools:` line matched nothing in the session — is not yet a seeded case.
+  `child-surface-inline-fallback/` seeds the `design-auditor`'s form, a
+  child that starts on its file tools and returns `surface-unavailable`;
+  the contract routes both forms to the same inline fallback.
+- **A predicted child-surface failure** — the skill declining to
+  dispatch at all, because the namespace its surface check resolved is not
+  the one the agent's `tools:` line names — is not a seeded case either.
+  Both seeded degradation cases begin after a dispatch, and a prompt
+  asserting that the session mounts the atlas under another name would
+  contradict the tools the harness actually granted; the case needs a
+  session whose atlas is registered by hand beside the plugin.
 - **Transport outage mechanics** are not simulated: the absent-surface case
   starts after failed MCP registration and judges the skill's public response.
   Transport connection and addressing are exercised by the publisher's MCP

@@ -37,8 +37,18 @@ Release. Never stitch two Releases together.
 1. `atlas_orient` — ordinary design vocabulary in, candidate identities
    out, with status and hook, ranked with identity fields and Card claims
    before Section text. Read `scope.total` as the traversal rules say:
-   every word widens the candidate set, so a total near the whole Release
-   is narrowed by dropping words, not by adding them. Leave `kind`
+   a query opens one tier, and a total near the whole Release is
+   narrowed by dropping words, not by adding them. Write each word as
+   the stem the rules describe — `valid`, not `validated`; `pointer`,
+   not `pointers` — because a word of four or more letters matches every
+   longer token it begins and a longer form matches only itself: the
+   inflection that comes naturally when restating a design problem is
+   the form that misses the corpus's own vocabulary. Stems land on the
+   subjects about a thing. When the problem turns on its own noun — a
+   word no identity field carries, `rollback`, `sandbox`, `ledger` —
+   orient that word alone, or with such words only, because one word
+   that names a subject silences every word beside it that names none,
+   and the payload does not say which words it read. Leave `kind`
    unset on the first pass — the example node that matches a stated design
    almost verbatim is not a `pattern`, and a filter that hides it costs
    more than the handful of candidates it saves. Skip orient entirely when
@@ -72,19 +82,28 @@ Release. Never stitch two Releases together.
    occurrence of class `undisclosed` has a hook and no target: it is a
    roadmap disclosure, carried by the shared forms' roadmap rule and never
    addressed.
-5. `atlas_decisions` (then `atlas_read` with `decision:<id>` for the record)
-   only when publication history bears on the consultation; the live nodes
-   of the active Release remain authoritative. `atlas_provenance` only when
-   a claim has to be audited — it expands a Card's source addresses into
-   publisher and attestation facts, and is batched and atomic like cards,
-   addressed by those `node#section` addresses and never by a bare id.
+5. Publication history is optional and never overrides the live Nodes. When
+   it bears, call
+   `atlas_orient(query="", kind="decision", expected_revision=<coherence>)`
+   to list the admitted Decisions, then pass the returned `decision:<id>`
+   address unchanged to `atlas_read` with that same `expected_revision`.
+   When a Card claim has to be audited, request it with
+   `atlas_cards(ids=[<node-id>], provenance=true, expected_revision=<coherence>)`;
+   the same
+   atomic Card batch expands every cited source address into publisher and
+   attestation facts. Never compose a Decision address or send source
+   addresses as another batch.
 6. Drop candidates that turned out not to bear. Keep only patterns you can
    apply to the *stated* design, not patterns that are merely nearby.
 
 Quick checks along the way: `atlas_navigate` with `view="tree"` for the
-Release at a glance in its canonical order, `atlas_define` to ground a term
-before a batched call (an ambiguous term comes back as candidate terms, not
-an error). If the dispatch prompt turns out to be "where do I start" rather
+Release at a glance in its canonical order. To ground a term, use
+`atlas_orient` with `kind="term"`; an exact candidate's Hook is the full
+definition, so pass its returned `term:<key>` address unchanged to
+`atlas_read(address="term:<key>", expected_revision=<coherence>)` only when
+the exact definition payload is useful. Ambiguity is
+several candidates and a miss is an empty successful page. If the dispatch
+prompt turns out to be "where do I start" rather
 than a design decision, answer with `atlas_navigate` and `view="tour"` —
 the publisher's own curated walk, one call, no ladder — instead of running
 the method above.
@@ -96,7 +115,20 @@ Exactly the ConsultationReturn shape the dispatch pasted, starting with its
 call, because the skill receives only what you say last, and a turn that
 ends on a call delivers nothing. The dispatching skill validates your return
 deterministically against that shape's receiver checks and discards it on
-any violation, so conform first, then distill. The shape's shared rules
+any violation, so conform first, then distill. The shape's line bound
+counts newlines, the way the receiver counts them, so layout spends it
+before content does: a return hard-wrapped at column eighty or ninety
+runs past the bound with fewer patterns than the shape allows and is
+discarded whole, and the corrective dispatch that follows repeats the
+entire traversal. Write each bullet as one line of heading and one
+unwrapped line of distillation, however long that line runs, and keep to
+the patterns that bear — a bullet the reader could skip is one the bound
+cannot afford. A tension is a bullet too: the heading is the line
+`**Tensions**` alone, and each tension beneath it is one bullet naming
+the two pulls and citing the Section whose tradeoff governs the choice.
+The receiver holds every bullet to the citation form and discards a
+tension written on the heading line or as a paragraph, because prose is
+where an uncited claim rides out to the user as consulted. The shape's shared rules
 travel with it — statuses carried honestly, no prose dumps, every
 substantive published-pattern claim cited — and your value is distillation
 against the stated problem: what each pattern prescribes or warns *for this

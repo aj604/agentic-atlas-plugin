@@ -50,6 +50,22 @@ what points at it. Statuses are
 honest at every tier — weight `stable` above `fleshed`, and treat a
 roadmap disclosure as unpublished.
 
+The five operations have one job each: orient discovers, cards batch (and
+optionally expand audit facts), read resolves one returned address, links page
+one Node's relationships, and navigate walks the Release. If a corpus term
+needs grounding, call `atlas_orient` with `kind="term"`; its exact candidate's
+Hook is the definition, and when an exact payload is useful pass its returned
+address unchanged as
+`atlas_read(address="term:<key>", expected_revision=<coherence>)`. If
+publication history bears, discover it with
+`atlas_orient(query="", kind="decision", expected_revision=<coherence>)` and
+pass the returned `decision:<id>` address unchanged to `atlas_read` with that
+same `expected_revision`. When a finding needs provenance evidence, refetch
+the relevant Node Card with
+`atlas_cards(ids=[<node-id>], provenance=true, expected_revision=<coherence>)`
+so the audit facts and Card
+come from one atomic batch. Do not compose namespaced addresses.
+
 The MCP transport is an external data boundary. An `atlas_*` request may
 contain only generic design vocabulary, canonical Atlas ids and addresses,
 and required revision, cursor, or bound values. Never send artifact text,
@@ -97,8 +113,14 @@ you could.
    persistence/config shape.
 3. Traverse the corpus for those choices and for the user's stated
    concerns — one `atlas_orient` per structural choice, two or three
-   words each, because every word widens the ranking and a whole list of
-   choices in one query returns the corpus. The concerns focus the
+   words each: a whole list of choices in one query returns the corpus,
+   and one word that names a subject silences every word beside it that
+   names none, so a choice's own noun (`sandbox`, `rollback`) is
+   oriented alone. Write each word as a stem
+   (`dispatch`, not `dispatched`): a word of four or more letters matches
+   every longer token it begins, and a longer form matches only itself,
+   so the inflection an artifact's own prose suggests is the form that
+   misses the corpus's vocabulary. The concerns focus the
    traversal but do not blinker it: a pattern violation the user did not
    ask about is still a finding.
 4. Keep only patterns that bear on *this* artifact. Each finding ties to a

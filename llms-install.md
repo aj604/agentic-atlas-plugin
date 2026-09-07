@@ -28,7 +28,9 @@ further setup.
 
 ## What it serves
 
-The endpoint exposes eight `atlas_*` tools for consulting a published
-collection of field-tested patterns for designing agent systems: orienting
-into the corpus, reading cited pattern sections, and following decisions and
-provenance. All calls are read-only.
+This `0.6.0` source artifact is prepared for the target-v6 surface of five
+`atlas_*` tools: orienting into the corpus, batching Cards with optional
+provenance, reading Nodes, Decisions and terms at returned addresses,
+following links, and navigating the Release. Its publication is gated on
+promotion of the coordinated v6 server Release; this preparation does not
+claim the hosted endpoint has changed. All calls are read-only.
