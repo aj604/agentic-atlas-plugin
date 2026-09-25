@@ -28,7 +28,7 @@ further setup.
 
 ## What it serves
 
-This `0.6.0` source artifact is prepared for the target-v6 surface of five
+This `0.6.1` source artifact is prepared for the target-v6 surface of five
 `atlas_*` tools: orienting into the corpus, batching Cards with optional
 provenance, reading Nodes, Decisions and terms at returned addresses,
 following links, and navigating the Release. Its publication is gated on

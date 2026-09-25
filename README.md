@@ -63,4 +63,8 @@ unauthenticated, and all are indexed at
 Working on the plugin with an AI coding agent? Start with
 [AGENTS.md](AGENTS.md).
 
-The plugin is distributed under the [Agentic Atlas License](LICENSE.md).
+## License
+
+The plugin is distributed under the [Agentic Atlas License](LICENSE.md):
+source-available, free to read, install, and consult, with republication
+withheld. Both manifests name it as `LicenseRef-Agentic-Atlas-1.0`.
