@@ -36,6 +36,12 @@ Then install `agentic-atlas`. The plugin connects to the hosted, read-only MCP
 endpoint at <https://agentic-atlas.dev/mcp/>. It installs no SDK, CLI, local
 server, or content bundle.
 
+The three skills can read an agent artifact you select in your workspace.
+They send only pattern lookup terms, Atlas identifiers, and consultation
+parameters to the hosted endpoint, not your artifact text or local file paths.
+The plugin has no hooks, background process, or local data store. The endpoint's
+data handling is described in the [Atlas privacy policy](https://agentic-atlas.dev/privacy).
+
 Connection instructions are at <https://agentic-atlas.dev/connect>, and the
 copyable consultation contract is at
 <https://agentic-atlas.dev/consult.md>. Report plugin or transport problems in
@@ -56,3 +62,5 @@ unauthenticated, and all are indexed at
 
 Working on the plugin with an AI coding agent? Start with
 [AGENTS.md](AGENTS.md).
+
+The plugin is distributed under the [Agentic Atlas License](LICENSE.md).

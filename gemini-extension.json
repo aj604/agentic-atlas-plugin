@@ -1,0 +1,10 @@
+{
+  "name": "agentic-atlas",
+  "version": "0.6.0",
+  "description": "Agentic Atlas: field-tested patterns for designing agent systems, readable by people and consultable by agents over MCP. Read-only, no auth, no account.",
+  "mcpServers": {
+    "agentic-atlas": {
+      "httpUrl": "https://agentic-atlas.dev/mcp/"
+    }
+  }
+}
