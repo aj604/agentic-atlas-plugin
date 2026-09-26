@@ -1,24 +1,22 @@
-# Plugin evals — `claude plugin eval`
+# Plugin behavior evals
 
 Behavioral evals for the companion plugin, judged entirely by external
 behavior per issue #441's testing decisions: what fires, what gets
 dispatched, what a return is checked against, what the user is told. No
 prompt wording or internal call ordering is asserted.
 
-Run from this plugin's directory (the harness is early-access; a plain
-`claude plugin eval` in an empty directory tells you whether your session
-is enabled):
-
-```bash
-claude plugin eval . --allow-tools Skill --allow-tools Read --allow-tools Glob --allow-tools Grep --allow-tools Agent --allow-tools 'mcp__plugin_agentic-atlas_agentic-atlas__*'
-```
+Run the cases from this plugin's directory with Claude Code's plugin eval
+harness. Grant these tools to the suite: `Skill`, `Read`, `Glob`, `Grep`,
+`Agent`, and `mcp__plugin_agentic-atlas_agentic-atlas__*`. The harness is
+early-access; its help explains whether your session is enabled and how to
+supply the tool grants.
 
 `Agent` is granted here and withheld case by case on purpose. Two cases
 assert the child is never dispatched — before the surface check, and after a
 child's tool scope has already failed to bind. An invocation that withholds
 `Agent` keeps those counts at zero itself, and both graders then pass a run
 where the plugin dispatched anyway. The grant is what makes not dispatching
-observable, so keep every tool a `tool_used` grader names on this line and
+observable, so keep every tool a `tool_used` grader names in this list and
 withhold it in the cases that must not reach it.
 
 The third case that names `Agent` requires it: `return-shape-recovery`

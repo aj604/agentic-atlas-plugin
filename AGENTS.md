@@ -38,7 +38,7 @@ truth that ages the moment the atlas is promoted.
     skills/<name>/SKILL.md           the three skills
     agents/*.md                      the two read-only subagents
     contracts/return-shapes.md       the one normative skill-to-agent seam
-    evals/                           behavioral evals for `claude plugin eval`
+    evals/                           behavioral evaluation cases
     .claude-plugin/marketplace.json  the marketplace entry (repository root)
 
 The two manifest dialects state one product. `plugin.json` and `mcp.json` are
@@ -65,14 +65,9 @@ dialect and you must change the other.
   addresses on agentic-atlas.dev; an unpublished pattern is named as
   unpublished rather than linked.
 
-## Trying it
+## Consumer guidance
 
-Connect the endpoint for your client first — instructions per client are at
-<https://agentic-atlas.dev/connect>. Then either install the plugin
-(`/plugin marketplace add aj604/agentic-atlas-plugin`) or install one skill
-with the commands in [README.md](README.md).
-
-For a harness with no plugin system, the same consultation contract is
-published as copyable prose at <https://agentic-atlas.dev/consult.md>, and
-<https://agentic-atlas.dev/llms.txt> lists every machine-readable surface this
-publisher offers.
+The [README.md](README.md) explains installation and use. The hosted
+consultation contract is at <https://agentic-atlas.dev/consult.md>, and
+<https://agentic-atlas.dev/llms.txt> lists the publisher's machine-readable
+surfaces.
