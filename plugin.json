@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "agentic-atlas",
-  "version": "0.6.2",
+  "version": "0.6.3",
   "license": "LicenseRef-Agentic-Atlas-1.0",
   "description": "Do design work with Agentic Atlas over hosted MCP at agentic-atlas.dev/mcp/. Three skills — audit an existing agent artifact, design a new agent system, apply one named pattern — over two read-only agents; no SDK, CLI, local server, or content bundle is installed.",
   "author": {
@@ -16,5 +16,91 @@
     "skills",
     "claude-code",
     "mcp"
-  ]
+  ],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Agentic Atlas",
+        "shortDescription": "Design better agent systems",
+        "longDescription": "Design and review agent systems using published patterns, worked examples, glossary definitions, and decision records. Three skills help review an existing agent artifact, design a new agent system, and apply a named pattern. Five read-only MCP tools find relevant patterns, retrieve cards and exact sections, trace relationships, and provide a curated learning path. Recommendations cite their sources and distinguish published guidance from roadmap entries. Artifact contents stay in your working context; only generic design vocabulary and Atlas identifiers are sent to the hosted service. Applying a pattern can produce local edits when you authorize them. No account is required.",
+        "developerName": "Avery Jones",
+        "category": "Developer Tools",
+        "capabilities": [
+          "Review agent designs",
+          "Design agent systems",
+          "Apply a named pattern",
+          "Consult published patterns"
+        ],
+        "websiteURL": "https://agentic-atlas.dev/",
+        "supportURL": "https://agentic-atlas.dev/contact",
+        "privacyPolicyURL": "https://agentic-atlas.dev/privacy",
+        "termsOfServiceURL": "https://github.com/aj604/agentic-atlas-plugin/blob/main/LICENSE.md",
+        "defaultPrompt": [
+          "Help me design a research agent with clear verification boundaries.",
+          "Review my agent skill against Agentic Atlas patterns.",
+          "Show me where to start with Agentic Atlas."
+        ],
+        "composerIcon": "./.claude-plugin/icon.svg",
+        "logo": "./.claude-plugin/icon.svg"
+      },
+      "review": {
+        "demo_recording_url": "https://github.com/aj604/agentic-atlas-plugin/releases/download/openai-review-demo-2026-09-30/agentic-atlas-live-overview.mp4",
+        "commerce": false,
+        "test_cases": {
+          "positive": [
+            {
+              "description": "Find patterns",
+              "prompt": "Find Atlas patterns about dispatch boundaries.",
+              "tools_triggered": "atlas_orient, atlas_cards",
+              "expected_behavior": "Discover candidates with generic vocabulary, return published cards, and cite sources."
+            },
+            {
+              "description": "Design a system",
+              "prompt": "Help me design a research agent with clear verification boundaries.",
+              "tools_triggered": "atlas_orient, atlas_cards, atlas_read",
+              "expected_behavior": "Use designing-agent-systems, clarify goals as needed, consult published sections, and propose a cited design."
+            },
+            {
+              "description": "Review an artifact",
+              "prompt": "Review this agent instruction: Read all files, research online, write code, and approve your own changes without checks.",
+              "tools_triggered": "atlas_orient, atlas_cards, atlas_read",
+              "expected_behavior": "Use reviewing-agent-designs and return concrete cited findings. Never send artifact text to Atlas."
+            },
+            {
+              "description": "Apply a pattern",
+              "prompt": "Apply deferred-context to this agent instruction: Load the entire 200-page reference manual into every session. Propose a revision before editing.",
+              "tools_triggered": "atlas_orient, atlas_cards, atlas_read",
+              "expected_behavior": "Use applying-a-pattern, verify the named pattern, read published guidance, and propose cited edits. Report any unavailable pattern honestly."
+            },
+            {
+              "description": "Tour and relationships",
+              "prompt": "Show me the Atlas starting tour and the relationships of its first published pattern.",
+              "tools_triggered": "atlas_navigate, atlas_links",
+              "expected_behavior": "Return the curated tour, use a returned pattern id for relationships, and explain omissions or pagination."
+            }
+          ],
+          "negative": [
+            {
+              "description": "Current news is outside the versioned corpus",
+              "prompt": "Search the web for today's newest agent framework releases.",
+              "expected_behavior": "Do not invoke Atlas, which reads a versioned corpus and does not search current news."
+            },
+            {
+              "description": "Ordinary code",
+              "prompt": "Write a Python function that adds two integers.",
+              "expected_behavior": "Handle ordinary code without selecting Atlas skills or calling Atlas tools."
+            },
+            {
+              "description": "Read-only service",
+              "prompt": "Delete the deferred-context pattern from the public Atlas and publish my replacement.",
+              "expected_behavior": "Explain that the plugin cannot mutate or publish Atlas; do not claim deletion or publication."
+            }
+          ]
+        }
+      },
+      "publication": {
+        "release_notes": "Bundles all three Atlas skills with the hosted five-tool MCP server and OpenAI directory metadata. Adds portable inline execution for clients without named-agent dispatch."
+      }
+    }
+  }
 }

@@ -57,7 +57,7 @@ Release. Never stitch two Releases together.
    than re-querying with synonyms.
 2. Select candidate ids whose hooks bear on the stated decision. Cast wide
    — a candidate costs one card.
-3. `atlas_cards` — 1–4 distinct ids per call, one Card per id: hook,
+3. `atlas_cards` — 1–8 distinct ids per call, one Card per id: hook,
    status, the publisher's decision-bearing claims, and compact source
    addresses. A refused batch answers `batch_not_atomic` naming the ids
    under `rejected`: drop those and re-batch rather than dropping to one

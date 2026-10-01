@@ -28,7 +28,7 @@ further setup.
 
 ## What it serves
 
-Version `0.6.2` uses the live five-tool `atlas_*` surface: orienting into the
+Version `0.6.3` uses the live five-tool `atlas_*` surface: orienting into the
 corpus, batching Cards with optional provenance, reading Nodes, Decisions and
 terms at returned addresses, following links, and navigating the Release.
 All calls are read-only.
